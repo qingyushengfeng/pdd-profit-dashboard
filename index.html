@@ -27,28 +27,27 @@
         .glow { box-shadow: 0 0 30px rgba(255,71,87,0.3); }
         .float-animation { animation: float 3s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        .gradient-text { background: linear-gradient(135deg, #ff4757, #ffa502); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
 <body class="text-white">
-    <!-- 登录界面 -->
+    <!-- 登录页 -->
     <div id="loginPage" class="min-h-screen flex items-center justify-center p-4">
         <div class="glass rounded-3xl p-8 w-full max-w-md">
             <div class="text-center mb-8">
-                <div class="text-5xl mb-4">🏪</div>
-                <h1 class="text-2xl font-bold gradient-text mb-2">拼多多店铺利润管理</h1>
-                <p class="text-white/50 text-sm">登录以开始管理您的店铺数据</p>
+                <div class="text-5xl mb-4 float-animation">💰</div>
+                <h1 class="text-2xl font-bold mb-2">拼多多利润管理系统</h1>
+                <p class="text-white/50 text-sm">登录你的账号</p>
             </div>
             <div class="space-y-4">
                 <div>
                     <label class="block text-white/60 text-sm mb-2">用户名</label>
                     <input type="text" id="loginUsername" placeholder="输入用户名" 
-                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-pink-400 transition">
+                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-pink-500 transition">
                 </div>
                 <div>
                     <label class="block text-white/60 text-sm mb-2">密码</label>
-                    <input type="password" id="loginPassword" placeholder="输入密码" 
-                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-pink-400 transition">
+                    <input type="password" id="loginPassword" placeholder="输入密码"
+                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-pink-500 transition">
                 </div>
                 <button onclick="handleLogin()" class="w-full btn-primary rounded-xl py-3 font-medium mt-4 transition">
                     登 录
@@ -56,11 +55,6 @@
                 <div class="text-center pt-4 border-t border-white/10">
                     <p class="text-white/40 text-sm">还没有账号？</p>
                     <button onclick="showRegister()" class="text-pink-400 hover:text-pink-300 text-sm mt-1 transition">立即注册 →</button>
-                </div>
-                <div class="text-center pt-2">
-                    <button onclick="quickLogin()" class="text-white/30 text-xs hover:text-white/50 transition">
-                        演示模式（免登录）
-                    </button>
                 </div>
                 <div class="text-center pt-2">
                     <button onclick="showAdminLogin()" class="text-yellow-400/50 text-xs hover:text-yellow-400 transition">
@@ -71,7 +65,38 @@
         </div>
     </div>
 
-    <!-- 管理员登录界面 -->
+    <!-- 注册页 -->
+    <div id="registerPage" class="min-h-screen flex items-center justify-center p-4 hidden">
+        <div class="glass rounded-3xl p-8 w-full max-w-md">
+            <div class="text-center mb-8">
+                <div class="text-5xl mb-4">✨</div>
+                <h1 class="text-2xl font-bold mb-2">创建账号</h1>
+                <p class="text-white/50 text-sm">开始管理你的店铺</p>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-white/60 text-sm mb-2">设置用户名</label>
+                    <input type="text" id="regUsername" placeholder="设置用户名" 
+                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-pink-500 transition">
+                </div>
+                <div>
+                    <label class="block text-white/60 text-sm mb-2">设置密码</label>
+                    <input type="password" id="regPassword" placeholder="设置密码"
+                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-pink-500 transition">
+                </div>
+                <button onclick="handleRegister()" class="w-full btn-primary rounded-xl py-3 font-medium mt-4 transition">
+                    注册账号
+                </button>
+                <div class="text-center pt-4">
+                    <button onclick="showLogin()" class="text-pink-400 hover:text-pink-300 text-sm transition">
+                        ← 返回登录
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 管理员登录页 -->
     <div id="adminLoginPage" class="min-h-screen flex items-center justify-center p-4 hidden">
         <div class="glass rounded-3xl p-8 w-full max-w-md">
             <div class="text-center mb-8">
@@ -97,58 +122,26 @@
         </div>
     </div>
 
-    <!-- 注册界面 -->
-    <div id="registerPage" class="min-h-screen flex items-center justify-center p-4 hidden">
-        <div class="glass rounded-3xl p-8 w-full max-w-md">
-            <div class="text-center mb-8">
-                <h1 class="text-2xl font-bold mb-2">创建新账号</h1>
-                <p class="text-white/50 text-sm">注册后即可开始管理您的店铺</p>
-            </div>
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-white/60 text-sm mb-2">设置用户名</label>
-                    <input type="text" id="regUsername" placeholder="输入用户名" 
-                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-pink-400 transition">
-                </div>
-                <div>
-                    <label class="block text-white/60 text-sm mb-2">设置密码</label>
-                    <input type="password" id="regPassword" placeholder="输入密码" 
-                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-pink-400 transition">
-                </div>
-                <div>
-                    <label class="block text-white/60 text-sm mb-2">确认密码</label>
-                    <input type="password" id="regPassword2" placeholder="再次输入密码" 
-                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-pink-400 transition">
-                </div>
-                <button onclick="handleRegister()" class="w-full btn-primary rounded-xl py-3 font-medium mt-4 transition">
-                    注 册
-                </button>
-                <div class="text-center pt-4">
-                    <button onclick="showLogin()" class="text-pink-400 hover:text-pink-300 text-sm transition">
-                        ← 返回登录
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 主界面 -->
-    <div id="mainPage" class="hidden">
-        <!-- 顶部导航 -->
-        <nav class="px-6 py-4 glass border-b border-white/10 sticky top-0 z-40">
+    <!-- 主页 -->
+    <div id="mainPage" class="hidden min-h-screen">
+        <!-- 导航 -->
+        <nav class="glass sticky top-0 z-50 px-6 py-4">
             <div class="max-w-7xl mx-auto flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="text-2xl">🏪</span>
-                    <h1 class="text-lg font-semibold gradient-text">拼多多店铺利润管理</h1>
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl">💰</span>
+                    <span class="font-bold text-lg">利润管理</span>
                 </div>
                 <div class="flex items-center gap-4">
                     <div class="flex items-center gap-2 bg-white/10 rounded-full px-4 py-2">
-                        <span class="text-sm text-white/60">当前用户：</span>
+                        <span class="text-sm text-white/60">👑</span>
                         <span class="font-medium" id="navUsername">-</span>
                     </div>
                     <div id="viewToggle" class="hidden flex items-center gap-2 bg-yellow-500/20 rounded-full px-4 py-2">
-                        <button onclick="switchAdminView('all')" id="btnViewAll" class="px-3 py-1 rounded-full text-xs font-medium transition">全部</button>
+                        <button onclick="switchAdminView('all')" id="btnViewAll" class="px-3 py-1 rounded-full text-xs font-medium transition">全部汇总</button>
                         <button onclick="switchAdminView('self')" id="btnViewSelf" class="px-3 py-1 rounded-full text-xs font-medium transition">个人</button>
+                        <select id="staffSelect" onchange="selectStaff(this.value)" class="bg-transparent text-xs px-2 py-1 rounded text-yellow-400">
+                            <option value="">选择客服</option>
+                        </select>
                     </div>
                     <button onclick="handleLogout()" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-sm transition">
                         退出
@@ -157,547 +150,491 @@
             </div>
         </nav>
 
-        <main class="max-w-7xl mx-auto p-6">
-            <!-- 总体统计卡片 -->
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-                <div class="stat-card rounded-2xl p-4 profit-card transition duration-300">
-                    <div class="text-xs text-white/50 mb-1">🌟 总利润</div>
-                    <div class="text-xl font-bold positive" id="statTotalProfit">¥0.00</div>
+        <main class="max-w-7xl mx-auto px-6 py-8">
+            <!-- 统计卡片 -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+                <div class="stat-card rounded-2xl p-4 text-center profit-card transition">
+                    <div class="text-white/40 text-xs mb-1">总利润</div>
+                    <div class="text-xl font-bold positive" id="statTotalProfit">¥0</div>
                 </div>
-                <div class="stat-card rounded-2xl p-4 profit-card transition duration-300">
-                    <div class="text-xs text-white/50 mb-1">💰 总营收</div>
-                    <div class="text-xl font-bold text-orange-400" id="statTotalRevenue">¥0.00</div>
+                <div class="stat-card rounded-2xl p-4 text-center profit-card transition">
+                    <div class="text-white/40 text-xs mb-1">总营收</div>
+                    <div class="text-xl font-bold" id="statTotalRevenue">¥0</div>
                 </div>
-                <div class="stat-card rounded-2xl p-4 profit-card transition duration-300">
-                    <div class="text-xs text-white/50 mb-1">📦 总成本</div>
-                    <div class="text-xl font-bold text-blue-400" id="statTotalCost">¥0.00</div>
+                <div class="stat-card rounded-2xl p-4 text-center profit-card transition">
+                    <div class="text-white/40 text-xs mb-1">总成本</div>
+                    <div class="text-xl font-bold" id="statTotalCost">¥0</div>
                 </div>
-                <div class="stat-card rounded-2xl p-4 profit-card transition duration-300">
-                    <div class="text-xs text-white/50 mb-1">📋 总订单</div>
-                    <div class="text-xl font-bold text-purple-400" id="statTotalOrders">0</div>
+                <div class="stat-card rounded-2xl p-4 text-center profit-card transition">
+                    <div class="text-white/40 text-xs mb-1">总订单</div>
+                    <div class="text-xl font-bold" id="statTotalOrders">0</div>
                 </div>
-                <div class="stat-card rounded-2xl p-4 profit-card transition duration-300">
-                    <div class="text-xs text-white/50 mb-1">🏪 店铺数</div>
-                    <div class="text-xl font-bold text-cyan-400" id="statTotalStores">0</div>
+                <div class="stat-card rounded-2xl p-4 text-center profit-card transition">
+                    <div class="text-white/40 text-xs mb-1">店铺数</div>
+                    <div class="text-xl font-bold" id="statTotalStores">0</div>
                 </div>
-                <div class="stat-card rounded-2xl p-4 profit-card transition duration-300">
-                    <div class="text-xs text-white/50 mb-1">📈 利润率</div>
-                    <div class="text-xl font-bold text-green-400" id="statProfitRate">0%</div>
+                <div class="stat-card rounded-2xl p-4 text-center profit-card transition">
+                    <div class="text-white/40 text-xs mb-1">利润率</div>
+                    <div class="text-xl font-bold" id="statProfitRate">0%</div>
                 </div>
             </div>
 
-            <!-- Tab导航 -->
+            <!-- Tab切换 -->
             <div class="flex gap-2 mb-6">
-                <button onclick="switchTab('overview')" class="tab-btn tab-active px-5 py-2.5 rounded-full text-sm font-medium border border-white/20 transition" data-tab="overview">
-                    📊 利润总览
-                </button>
-                <button onclick="switchTab('stores')" class="tab-btn px-5 py-2.5 rounded-full text-sm font-medium border border-white/20 text-white/60 hover:text-white transition" data-tab="stores">
-                    🏪 店铺管理
-                </button>
-                <button onclick="switchTab('history')" class="tab-btn px-5 py-2.5 rounded-full text-sm font-medium border border-white/20 text-white/60 hover:text-white transition" data-tab="history">
-                    📜 历史记录
-                </button>
+                <button onclick="switchTab('overview')" class="tab-btn tab-active px-6 py-2 rounded-full border border-white/20 text-sm transition" data-tab="overview">概览</button>
+                <button onclick="switchTab('stores')" class="tab-btn px-6 py-2 rounded-full border border-white/20 text-sm text-white/60 transition" data-tab="stores">店铺</button>
+                <button onclick="switchTab('records')" class="tab-btn px-6 py-2 rounded-full border border-white/20 text-sm text-white/60 transition" data-tab="records">订单</button>
             </div>
 
-            <!-- 利润总览Tab -->
+            <!-- 概览 -->
             <div id="tab-overview" class="tab-content">
-                <!-- 图表区 -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-                    <div class="glass rounded-2xl p-5">
-                        <h3 class="text-sm font-medium text-white/80 mb-4">📈 利润趋势（近7天）</h3>
-                        <div class="h-48">
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <!-- 图表 -->
+                    <div class="glass rounded-2xl p-6">
+                        <h3 class="text-lg font-medium mb-4">📈 7天利润趋势</h3>
+                        <div class="h-64">
                             <canvas id="trendChart"></canvas>
                         </div>
                     </div>
-                    <div class="glass rounded-2xl p-5">
-                        <h3 class="text-sm font-medium text-white/80 mb-4">🥧 利润占比</h3>
-                        <div class="h-48">
+                    <div class="glass rounded-2xl p-6">
+                        <h3 class="text-lg font-medium mb-4">🥧 店铺利润占比</h3>
+                        <div class="h-64">
                             <canvas id="pieChart"></canvas>
                         </div>
                     </div>
-                    <div class="glass rounded-2xl p-5">
-                        <h3 class="text-sm font-medium text-white/80 mb-4">🏆 TOP 5 店铺</h3>
-                        <div class="space-y-3" id="top5List">
-                            <p class="text-white/40 text-sm text-center py-8">暂无数据</p>
-                        </div>
-                    </div>
                 </div>
-
-                <!-- 客服列表 -->
-                <div class="glass rounded-2xl p-5">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-sm font-medium text-white/80">👥 我的店铺列表</h3>
-                        <button onclick="openStoreModal()" class="btn-primary px-4 py-2 rounded-lg text-sm font-medium transition">
-                            ➕ 添加店铺
-                        </button>
+                
+                <!-- TOP5 & 店铺列表 -->
+                <div class="grid lg:grid-cols-2 gap-6 mt-6">
+                    <div class="glass rounded-2xl p-6">
+                        <h3 class="text-lg font-medium mb-4">🏆 TOP5 利润店铺</h3>
+                        <div id="top5List" class="space-y-2"></div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="storeList">
-                        <p class="col-span-full text-white/40 text-sm text-center py-12">暂无店铺，点击上方按钮添加</p>
+                    <div class="glass rounded-2xl p-6">
+                        <h3 class="text-lg font-medium mb-4">🏪 全部店铺</h3>
+                        <div id="storeList" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- 店铺管理Tab -->
+            <!-- 店铺管理 -->
             <div id="tab-stores" class="tab-content hidden">
-                <div class="glass rounded-2xl p-5">
+                <div class="glass rounded-2xl p-6">
                     <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-lg font-medium">🏪 店铺管理</h3>
-                        <button onclick="openStoreModal()" class="btn-primary px-5 py-2.5 rounded-xl text-sm font-medium transition">
-                            ➕ 添加新店铺
+                        <h3 class="text-lg font-medium">店铺列表</h3>
+                        <button onclick="openAddStore()" class="btn-primary px-4 py-2 rounded-xl text-sm font-medium transition flex items-center gap-2">
+                            <span>➕</span> 添加店铺
                         </button>
                     </div>
-                    
-                    <!-- 快捷操作 -->
-                    <div class="flex flex-wrap gap-3 mb-6 p-4 bg-white/5 rounded-xl">
-                        <button onclick="batchInput()" class="px-4 py-2 bg-orange-500/20 hover:bg-orange-500/30 text-orange-400 rounded-lg text-sm transition">
-                            🔢 批量录入订单
-                        </button>
-                        <button onclick="copyYesterday()" class="px-4 py-2 bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 rounded-lg text-sm transition">
-                            📋 复制昨日订单
-                        </button>
-                        <button onclick="clearToday()" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white/70 rounded-lg text-sm transition">
-                            🔄 重置今日
-                        </button>
-                    </div>
-
-                    <!-- 店铺表格 -->
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm">
-                            <thead>
-                                <tr class="text-white/50 text-xs border-b border-white/10">
-                                    <th class="px-4 py-3 text-left font-medium">#</th>
-                                    <th class="px-4 py-3 text-left font-medium">店铺名称</th>
-                                    <th class="px-4 py-3 text-left font-medium">商品</th>
-                                    <th class="px-4 py-3 text-right font-medium">卖价</th>
-                                    <th class="px-4 py-3 text-right font-medium">成本</th>
-                                    <th class="px-4 py-3 text-right font-medium">单笔利润</th>
-                                    <th class="px-4 py-3 text-right font-medium">今日订单</th>
-                                    <th class="px-4 py-3 text-right font-medium">今日利润</th>
-                                    <th class="px-4 py-3 text-right font-medium">累计利润</th>
-                                    <th class="px-4 py-3 text-center font-medium">操作</th>
-                                </tr>
-                            </thead>
-                            <tbody id="storeTable" class="divide-y divide-white/5">
-                            </tbody>
-                        </table>
-                    </div>
+                    <div id="storeTable" class="overflow-x-auto"></div>
                 </div>
             </div>
 
-            <!-- 历史记录Tab -->
-            <div id="tab-history" class="tab-content hidden">
-                <div class="glass rounded-2xl p-5">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-medium">📜 历史订单记录</h3>
-                        <div class="flex items-center gap-3">
-                            <input type="month" id="historyMonth" class="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm">
-                            <input type="text" id="historySearch" placeholder="搜索店铺..." 
-                                   class="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm w-40">
-                        </div>
+            <!-- 订单记录 -->
+            <div id="tab-records" class="tab-content hidden">
+                <div class="glass rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-medium">📜 订单记录</h3>
+                        <select id="monthSelect" onchange="loadRecords()" class="bg-white/10 border border-white/20 rounded-xl px-4 py-2 text-sm">
+                        </select>
                     </div>
-                    <div class="overflow-x-auto max-h-96">
-                        <table class="w-full text-sm">
-                            <thead class="sticky top-0 bg-slate-900/90">
-                                <tr class="text-white/50 text-xs">
-                                    <th class="px-4 py-3 text-left font-medium">日期</th>
-                                    <th class="px-4 py-3 text-left font-medium">店铺</th>
-                                    <th class="px-4 py-3 text-left font-medium">商品</th>
-                                    <th class="px-4 py-3 text-right font-medium">卖价</th>
-                                    <th class="px-4 py-3 text-right font-medium">成本</th>
-                                    <th class="px-4 py-3 text-right font-medium">订单</th>
-                                    <th class="px-4 py-3 text-right font-medium">利润</th>
-                                </tr>
-                            </thead>
-                            <tbody id="historyTable" class="divide-y divide-white/5">
-                            </tbody>
-                        </table>
-                    </div>
+                    <div id="recordList" class="space-y-3"></div>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- 添加店铺模态框 -->
-    <div id="storeModal" class="modal fixed inset-0 bg-black/70 backdrop-blur-sm items-center justify-center z-50 p-4">
-        <div class="glass rounded-3xl p-6 w-full max-w-lg">
-            <h3 class="text-xl font-semibold mb-6" id="storeModalTitle">添加店铺</h3>
-            <input type="hidden" id="editStoreId">
+    <!-- 添加店铺弹窗 -->
+    <div id="addStoreModal" class="modal fixed inset-0 bg-black/50 items-center justify-center z-50 p-4">
+        <div class="glass rounded-3xl p-8 w-full max-w-md">
+            <h3 class="text-xl font-bold mb-6">➕ 添加店铺</h3>
             <div class="space-y-4">
                 <div>
-                    <label class="block text-white/60 text-sm mb-2">店铺名称 *</label>
-                    <input type="text" id="storeName" placeholder="如：优品服饰旗舰店" 
-                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-pink-400 transition">
+                    <label class="block text-white/60 text-sm mb-2">店铺名称</label>
+                    <input type="text" id="storeName" placeholder="如：旗舰店" 
+                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30">
                 </div>
                 <div>
-                    <label class="block text-white/60 text-sm mb-2">商品简称 *</label>
-                    <input type="text" id="productName" placeholder="如：男士T恤-黑色" 
-                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-pink-400 transition">
+                    <label class="block text-white/60 text-sm mb-2">商品简称</label>
+                    <input type="text" id="productName" placeholder="如：洗面奶" 
+                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30">
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-white/60 text-sm mb-2">卖价（元）*</label>
-                        <input type="number" id="salePrice" placeholder="29.90" step="0.01" min="0"
-                               class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-pink-400 transition">
+                        <label class="block text-white/60 text-sm mb-2">卖价(元)</label>
+                        <input type="number" id="salePrice" placeholder="卖价" 
+                               class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30">
                     </div>
                     <div>
-                        <label class="block text-white/60 text-sm mb-2">成本（元）*</label>
-                        <input type="number" id="costPrice" placeholder="15.00" step="0.01" min="0"
-                               class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-pink-400 transition">
+                        <label class="block text-white/60 text-sm mb-2">成本(元)</label>
+                        <input type="number" id="costPrice" placeholder="成本" 
+                               class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30">
                     </div>
                 </div>
                 <div>
                     <label class="block text-white/60 text-sm mb-2">今日订单量</label>
-                    <input type="number" id="todayOrdersInput" placeholder="0" min="0" value="1"
-                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-pink-400 transition">
-                </div>
-                <div class="bg-white/5 rounded-xl p-4 space-y-2">
-                    <div class="flex justify-between text-sm">
-                        <span class="text-white/60">单笔利润</span>
-                        <span id="calcProfit" class="font-medium">¥0.00</span>
-                    </div>
-                    <div class="flex justify-between text-sm">
-                        <span class="text-white/60">利润率</span>
-                        <span id="calcRate" class="font-medium">0%</span>
-                    </div>
-                    <div class="flex justify-between text-sm">
-                        <span class="text-white/60">今日利润</span>
-                        <span id="calcTodayProfit" class="font-medium positive">¥0.00</span>
-                    </div>
+                    <input type="number" id="todayOrders" placeholder="今日订单数量" value="1" min="0"
+                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30">
                 </div>
             </div>
             <div class="flex gap-3 mt-6">
-                <button onclick="saveStore()" class="flex-1 btn-primary rounded-xl py-3 font-medium transition">保存</button>
-                <button onclick="closeStoreModal()" class="flex-1 bg-white/10 hover:bg-white/20 rounded-xl py-3 transition">取消</button>
+                <button onclick="closeModal('addStoreModal')" class="flex-1 py-3 border border-white/20 rounded-xl hover:bg-white/10 transition">
+                    取消
+                </button>
+                <button onclick="saveStore()" class="flex-1 btn-primary py-3 rounded-xl font-medium transition">
+                    保存
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- 批量录入模态框 -->
-    <div id="batchModal" class="modal fixed inset-0 bg-black/70 backdrop-blur-sm items-center justify-center z-50 p-4">
-        <div class="glass rounded-3xl p-6 w-full max-w-lg max-h-[80vh] overflow-y-auto">
-            <h3 class="text-xl font-semibold mb-4">📋 批量录入今日订单</h3>
-            <div id="batchInputs" class="space-y-3">
+    <!-- 编辑店铺弹窗 -->
+    <div id="editStoreModal" class="modal fixed inset-0 bg-black/50 items-center justify-center z-50 p-4">
+        <div class="glass rounded-3xl p-8 w-full max-w-md">
+            <h3 class="text-xl font-bold mb-6">✏️ 编辑店铺</h3>
+            <input type="hidden" id="editStoreId">
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-white/60 text-sm mb-2">店铺名称</label>
+                    <input type="text" id="editStoreName" 
+                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white">
+                </div>
+                <div>
+                    <label class="block text-white/60 text-sm mb-2">商品简称</label>
+                    <input type="text" id="editProductName" 
+                           class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-white/60 text-sm mb-2">卖价(元)</label>
+                        <input type="number" id="editSalePrice" 
+                               class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-white/60 text-sm mb-2">成本(元)</label>
+                        <input type="number" id="editCostPrice" 
+                               class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white">
+                    </div>
+                </div>
             </div>
             <div class="flex gap-3 mt-6">
-                <button onclick="applyBatch()" class="flex-1 btn-primary rounded-xl py-3 font-medium transition">确认</button>
-                <button onclick="closeBatchModal()" class="flex-1 bg-white/10 hover:bg-white/20 rounded-xl py-3 transition">取消</button>
+                <button onclick="closeModal('editStoreModal')" class="flex-1 py-3 border border-white/20 rounded-xl hover:bg-white/10 transition">
+                    取消
+                </button>
+                <button onclick="updateStore()" class="flex-1 btn-primary py-3 rounded-xl font-medium transition">
+                    保存修改
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- 删除确认模态框 -->
-    <div id="deleteModal" class="modal fixed inset-0 bg-black/70 backdrop-blur-sm items-center justify-center z-50 p-4">
-        <div class="glass rounded-3xl p-6 w-full max-w-sm">
-            <h3 class="text-xl font-semibold mb-4">⚠️ 确认删除</h3>
-            <p class="text-white/70 mb-6" id="deleteMsg">确定要删除吗？</p>
+    <!-- 录入订单弹窗 -->
+    <div id="orderModal" class="modal fixed inset-0 bg-black/50 items-center justify-center z-50 p-4">
+        <div class="glass rounded-3xl p-8 w-full max-w-md">
+            <h3 class="text-xl font-bold mb-6">📝 录入订单</h3>
+            <input type="hidden" id="orderStoreId">
+            <div>
+                <label class="block text-white/60 text-sm mb-2">选择日期</label>
+                <input type="date" id="orderDate" 
+                       class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white mb-4">
+            </div>
+            <div>
+                <label class="block text-white/60 text-sm mb-2">订单数量</label>
+                <input type="number" id="orderCount" placeholder="输入订单数量" value="1" min="0"
+                       class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white">
+            </div>
+            <div class="flex gap-3 mt-6">
+                <button onclick="closeModal('orderModal')" class="flex-1 py-3 border border-white/20 rounded-xl hover:bg-white/10 transition">
+                    取消
+                </button>
+                <button onclick="saveOrder()" class="flex-1 btn-primary py-3 rounded-xl font-medium transition">
+                    保存
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 删除确认 -->
+    <div id="deleteModal" class="modal fixed inset-0 bg-black/50 items-center justify-center z-50 p-4">
+        <div class="glass rounded-3xl p-8 w-full max-w-sm text-center">
+            <div class="text-5xl mb-4">⚠️</div>
+            <h3 class="text-xl font-bold mb-2">确认删除？</h3>
+            <p class="text-white/60 mb-6">此操作不可撤销</p>
             <div class="flex gap-3">
-                <button onclick="confirmDelete()" class="flex-1 btn-primary rounded-xl py-3 transition">删除</button>
-                <button onclick="closeDeleteModal()" class="flex-1 bg-white/10 hover:bg-white/20 rounded-xl py-3 transition">取消</button>
+                <button onclick="closeModal('deleteModal')" class="flex-1 py-3 border border-white/20 rounded-xl hover:bg-white/10 transition">
+                    取消
+                </button>
+                <button onclick="confirmDelete()" class="flex-1 bg-red-500 hover:bg-red-600 py-3 rounded-xl font-medium transition">
+                    删除
+                </button>
             </div>
         </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-white/90 text-black px-6 py-3 rounded-full font-medium shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <span id="toastMsg">操作成功</span>
     </div>
 
     <script>
-        // 数据存储
+        // ========== 配置区 ==========
+        const SUPABASE_URL = 'https://sghmaqzhqrxmqvewfilq.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnaG1hcXpoZXJ4bXF2ZXdmaWxxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc0NzkwMjAsImV4cCI6MjA2MzA1NTAyMH0.F8xG-E_7kLYT4R5v7M9n3qZ7h8xJ2qX5wU9vN6yT8cI';
+        const ADMIN_PASSWORD = 'admin2024';
+
+        // ========== 状态 ==========
         let currentUser = null;
-        let currentView = 'self'; // 'self' 或 'all'
-        let today = new Date().toISOString().split('T')[0];
-        let allData = { users: {}, loginHistory: [], adminPassword: 'admin2024' };
-        let tempBatchData = {};
-        let deleteTarget = { type: null, id: null };
+        let currentUserId = null;
+        let isAdmin = false;
+        let currentView = 'self'; // 'self' or 'all'
+        let selectedStaffId = null;
+        let stores = [];
+        let orders = [];
+        let allUsers = [];
         let charts = {};
+        let today = new Date().toISOString().split('T')[0];
+        let deleteTarget = { type: null, id: null };
 
-        // 初始化
-        function init() {
-            loadData();
-            checkLogin();
-            document.getElementById('historyMonth').value = today.substring(0, 7);
-            document.getElementById('historyMonth').addEventListener('change', renderHistoryTable);
-            document.getElementById('historySearch').addEventListener('input', renderHistoryTable);
+        // ========== 工具函数 ==========
+        const f = n => (n || 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        const fmtNum = n => (n || 0).toLocaleString();
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 2000);
         }
 
-        // 加载数据
-        function loadData() {
-            const saved = localStorage.getItem('pddProfitSystem');
-            if (saved) allData = JSON.parse(saved);
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        // ========== Supabase API ==========
+        async function supabaseRequest(table, options = {}) {
+            const { method = 'GET', body = null, params = {} } = options;
+            let url = `${SUPABASE_URL}/rest/v1/${table}`;
+            
+            const urlParams = new URLSearchParams();
+            Object.entries(params).forEach(([k, v]) => urlParams.set(k, v));
+            if (urlParams.toString()) url += '?' + urlParams.toString();
+
+            const headers = {
+                'apikey': SUPABASE_KEY,
+                'Authorization': `Bearer ${SUPABASE_KEY}`,
+                'Content-Type': 'application/json'
+            };
+            if (method !== 'GET') headers['Prefer'] = 'return=representation';
+
+            const config = { method, headers };
+            if (body) config.body = JSON.stringify(body);
+
+            const res = await fetch(url, config);
+            if (!res.ok) throw new Error(await res.text());
+            return method === 'DELETE' ? null : res.json();
         }
 
-        // 保存数据
-        function saveData() {
-            localStorage.setItem('pddProfitSystem', JSON.stringify(allData));
-        }
-
-        // 检查登录状态
-        function checkLogin() {
-            const lastLogin = localStorage.getItem('pddLastLogin');
-            if (lastLogin === '__ADMIN__') {
-                currentUser = '__ADMIN__';
-                currentView = 'all';
-                showMainPage();
-            } else if (lastLogin && allData.users[lastLogin]) {
-                currentUser = lastLogin;
-                showMainPage();
-            } else {
-                showLoginPage();
-            }
-        }
-
-        // 页面切换
-        function showLoginPage() {
+        // ========== 认证 ==========
+        function showLogin() {
+            ['loginPage', 'registerPage', 'adminLoginPage'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
             document.getElementById('loginPage').classList.remove('hidden');
-            document.getElementById('registerPage').classList.add('hidden');
-            document.getElementById('mainPage').classList.add('hidden');
         }
-
         function showRegister() {
-            document.getElementById('loginPage').classList.add('hidden');
+            ['loginPage', 'registerPage', 'adminLoginPage'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
             document.getElementById('registerPage').classList.remove('hidden');
         }
-
-        function showLogin() {
-            document.getElementById('loginPage').classList.remove('hidden');
-            document.getElementById('registerPage').classList.add('hidden');
-            document.getElementById('adminLoginPage').classList.add('hidden');
-        }
-
         function showAdminLogin() {
-            document.getElementById('loginPage').classList.add('hidden');
+            ['loginPage', 'registerPage', 'adminLoginPage'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
             document.getElementById('adminLoginPage').classList.remove('hidden');
             document.getElementById('adminPassword').value = '';
-            document.getElementById('adminPassword').focus();
         }
 
-        function handleAdminLogin() {
-            const password = document.getElementById('adminPassword').value;
-            if (password === allData.adminPassword) {
-                currentUser = '__ADMIN__';
-                currentView = 'all';
-                localStorage.setItem('pddLastLogin', '__ADMIN__');
-                showMainPage();
-            } else {
-                alert('管理员密码错误');
-            }
-        }
-
-        function showMainPage() {
-            document.getElementById('loginPage').classList.add('hidden');
-            document.getElementById('registerPage').classList.add('hidden');
-            document.getElementById('adminLoginPage').classList.add('hidden');
-            document.getElementById('mainPage').classList.remove('hidden');
-            
-            const isAdmin = currentUser === '__ADMIN__';
-            document.getElementById('navUsername').textContent = isAdmin ? '👑 管理员' : currentUser;
-            
-            // 管理员显示视图切换
-            const viewToggle = document.getElementById('viewToggle');
-            if (isAdmin) {
-                viewToggle.classList.remove('hidden');
-                renderAdminViewToggle();
-            } else {
-                viewToggle.classList.add('hidden');
-            }
-            
-            render();
-        }
-
-        // 登录
-        function handleLogin() {
-            const username = document.getElementById('loginUsername').value.trim();
-            const password = document.getElementById('loginPassword').value;
-
-            if (!username || !password) {
-                alert('请输入用户名和密码');
-                return;
-            }
-
-            if (!allData.users[username] || allData.users[username].password !== password) {
-                alert('用户名或密码错误');
-                return;
-            }
-
-            currentUser = username;
-            localStorage.setItem('pddLastLogin', username);
-            showMainPage();
-        }
-
-        // 注册
-        function handleRegister() {
+        async function handleRegister() {
             const username = document.getElementById('regUsername').value.trim();
             const password = document.getElementById('regPassword').value;
-            const password2 = document.getElementById('regPassword2').value;
+            
+            if (!username || !password) return showToast('请填写完整');
+            
+            try {
+                // 检查用户名是否存在
+                const existing = await supabaseRequest('users', { 
+                    params: { username: `eq.${username}`, select: 'id' } 
+                });
+                if (existing.length > 0) return showToast('用户名已存在');
 
-            if (!username || !password) {
-                alert('请填写所有字段');
-                return;
-            }
-            if (password !== password2) {
-                alert('两次密码不一致');
-                return;
-            }
-            if (allData.users[username]) {
-                alert('用户名已存在');
-                return;
-            }
+                // 创建用户
+                const newUser = await supabaseRequest('users', {
+                    method: 'POST',
+                    body: { username, password, is_admin: false }
+                });
 
-            allData.users[username] = { password, stores: [], records: {} };
-            saveData();
-            alert('注册成功！请登录');
+                showToast('注册成功！请登录');
+                showLogin();
+                document.getElementById('loginUsername').value = username;
+            } catch (e) {
+                showToast('注册失败');
+                console.error(e);
+            }
+        }
+
+        async function handleLogin() {
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!username || !password) return showToast('请填写完整');
+            
+            try {
+                const users = await supabaseRequest('users', { 
+                    params: { username: `eq.${username}`, password: `eq.${password}`, select: '*' } 
+                });
+                
+                if (users.length === 0) return showToast('用户名或密码错误');
+                
+                currentUser = username;
+                currentUserId = users[0].id;
+                isAdmin = false;
+                localStorage.setItem('pdd_user', username);
+                localStorage.setItem('pdd_user_id', currentUserId);
+                
+                showMainPage();
+                showToast(`欢迎，${username}！`);
+            } catch (e) {
+                showToast('登录失败');
+                console.error(e);
+            }
+        }
+
+        async function handleAdminLogin() {
+            const password = document.getElementById('adminPassword').value;
+            if (password !== ADMIN_PASSWORD) return showToast('密码错误');
+            
+            currentUser = '管理员';
+            currentUserId = null;
+            isAdmin = true;
+            localStorage.setItem('pdd_admin', 'true');
+            
+            showMainPage();
+            showToast('欢迎，管理员！');
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            currentUserId = null;
+            isAdmin = false;
+            localStorage.removeItem('pdd_user');
+            localStorage.removeItem('pdd_user_id');
+            localStorage.removeItem('pdd_admin');
             showLogin();
         }
 
-        // 快速登录（演示模式）
-        function quickLogin() {
-            currentUser = 'admin';
-            if (!allData.users[currentUser]) {
-                allData.users[currentUser] = { password: 'admin', stores: [], records: {} };
-                saveData();
+        function showMainPage() {
+            ['loginPage', 'registerPage', 'adminLoginPage'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById('mainPage').classList.remove('hidden');
+            
+            document.getElementById('navUsername').textContent = isAdmin ? '管理员' : currentUser;
+            document.getElementById('viewToggle').classList.toggle('hidden', !isAdmin);
+            
+            if (isAdmin) {
+                renderAdminViewToggle();
+                loadAllUsers();
             }
-            localStorage.setItem('pddLastLogin', currentUser);
-            showMainPage();
+            
+            switchTab('overview');
         }
 
-        // 登出
-        function handleLogout() {
-            localStorage.removeItem('pddLastLogin');
-            currentUser = null;
-            currentView = 'self';
-            showLoginPage();
-            document.getElementById('loginUsername').value = '';
-            document.getElementById('loginPassword').value = '';
-        }
-
-        // 管理员视图切换
+        // ========== 管理员视图切换 ==========
         function switchAdminView(view) {
             currentView = view;
+            selectedStaffId = null;
+            document.getElementById('staffSelect').value = '';
             renderAdminViewToggle();
-            render();
+            loadData();
         }
 
         function renderAdminViewToggle() {
             const isAll = currentView === 'all';
-            document.getElementById('btnViewAll').className = isAll ? 'px-3 py-1 rounded-full text-xs font-medium bg-yellow-500 text-black' : 'px-3 py-1 rounded-full text-xs font-medium text-yellow-400 hover:bg-yellow-500/20';
-            document.getElementById('btnViewSelf').className = !isAll ? 'px-3 py-1 rounded-full text-xs font-medium bg-yellow-500 text-black' : 'px-3 py-1 rounded-full text-xs font-medium text-yellow-400 hover:bg-yellow-500/20';
+            document.getElementById('btnViewAll').className = isAll 
+                ? 'px-3 py-1 rounded-full text-xs font-medium bg-yellow-500 text-black' 
+                : 'px-3 py-1 rounded-full text-xs font-medium text-yellow-400 hover:bg-yellow-500/20';
+            document.getElementById('btnViewSelf').className = !isAll 
+                ? 'px-3 py-1 rounded-full text-xs font-medium bg-yellow-500 text-black' 
+                : 'px-3 py-1 rounded-full text-xs font-medium text-yellow-400 hover:bg-yellow-500/20';
         }
 
-        // 渲染客服选择器（管理员个人视图）
-        function renderStaffSelector() {
-            const staffList = Object.keys(allData.users).filter(u => u !== '__ADMIN__');
-            
-            let statsHTML = `
-                <div class="glass rounded-2xl p-6 mb-6">
-                    <h3 class="text-lg font-medium mb-4 text-yellow-400">👤 选择客服查看</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                        ${staffList.map(username => {
-                            const userData = allData.users[username];
-                            const staffStores = userData?.stores || [];
-                            let staffProfit = 0;
-                            let staffOrders = 0;
-                            staffStores.forEach(s => {
-                                Object.values(userData.records?.[s.id] || {}).forEach(r => {
-                                    staffProfit += r.profit || 0;
-                                    staffOrders += r.orders || 0;
-                                });
-                            });
-                            return `
-                                <div onclick="selectStaff('${username}')" class="glass rounded-xl p-4 cursor-pointer hover:bg-white/15 transition text-center">
-                                    <div class="text-2xl mb-2">👤</div>
-                                    <div class="font-medium truncate">${username}</div>
-                                    <div class="text-xs text-white/50 mt-1">${staffStores.length}个店铺</div>
-                                    <div class="text-sm mt-2 ${staffProfit >= 0 ? 'positive' : 'text-green-400'}">¥${f(staffProfit)}</div>
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
-                    ${staffList.length === 0 ? '<p class="text-white/40 text-center py-8">暂无客服账号</p>' : ''}
-                </div>
-            `;
-            
-            document.getElementById('statTotalProfit').textContent = '-';
-            document.getElementById('statTotalRevenue').textContent = '-';
-            document.getElementById('statTotalCost').textContent = '-';
-            document.getElementById('statTotalOrders').textContent = staffList.length + '人';
-            document.getElementById('statTotalStores').textContent = '-';
-            document.getElementById('statProfitRate').textContent = '-';
-
-            // 在概览区域显示客服选择器
-            const overviewTab = document.getElementById('tab-overview');
-            let selector = document.getElementById('staffSelector');
-            if (!selector) {
-                selector = document.createElement('div');
-                selector.id = 'staffSelector';
-                overviewTab.insertBefore(selector, overviewTab.firstChild);
+        async function loadAllUsers() {
+            try {
+                allUsers = await supabaseRequest('users', { params: { select: 'id,username', is_admin: 'eq.false' } });
+                const select = document.getElementById('staffSelect');
+                select.innerHTML = '<option value="">选择客服</option>' + 
+                    allUsers.map(u => `<option value="${u.id}">${u.username}</option>`).join('');
+            } catch (e) {
+                console.error(e);
             }
-            selector.innerHTML = statsHTML;
         }
 
-        function selectStaff(username) {
-            currentUser = username;
-            document.getElementById('navUsername').textContent = '👤 ' + username;
-            render();
+        function selectStaff(userId) {
+            selectedStaffId = userId || null;
+            loadData();
         }
 
-        // Tab切换
-        function switchTab(tab) {
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.toggle('tab-active', btn.dataset.tab === tab);
-                btn.classList.toggle('text-white/60', btn.dataset.tab !== tab);
-            });
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(`tab-${tab}`).classList.remove('hidden');
-
-            if (tab === 'overview') renderOverview();
-            if (tab === 'stores') renderStoreTable();
-            if (tab === 'history') renderHistoryTable();
+        // ========== 数据加载 ==========
+        async function loadData() {
+            try {
+                if (isAdmin && currentView === 'all') {
+                    // 管理员查看全部
+                    stores = await supabaseRequest('stores', { params: { select: '*' } });
+                } else if (isAdmin && selectedStaffId) {
+                    // 管理员查看单个客服
+                    stores = await supabaseRequest('stores', { params: { user_id: `eq.${selectedStaffId}`, select: '*' } });
+                } else {
+                    // 普通用户
+                    stores = await supabaseRequest('stores', { params: { user_id: `eq.${currentUserId}`, select: '*' } });
+                }
+                
+                const storeIds = stores.map(s => s.id);
+                if (storeIds.length > 0) {
+                    const ordersRes = await supabaseRequest('orders', { 
+                        params: { store_id: `in.(${storeIds.join(',')})`, select: '*' } 
+                    });
+                    orders = Array.isArray(ordersRes) ? ordersRes : [];
+                } else {
+                    orders = [];
+                }
+                
+                render();
+            } catch (e) {
+                console.error('加载数据失败:', e);
+                showToast('加载数据失败');
+            }
         }
 
-        // 主渲染
+        // ========== 渲染 ==========
         function render() {
             renderStats();
-            renderOverview();
+            renderCharts();
+            renderTop5();
+            renderStoreCards();
+            renderStoreTable();
+            renderMonthSelect();
+            loadRecords();
         }
 
-        // 更新统计
         function renderStats() {
-            const isAdmin = currentUser === '__ADMIN__';
-            let stores = [];
-            let records = {};
-            let totalProfit = 0, totalRevenue = 0, totalCost = 0, totalOrders = 0, totalStaff = 0;
-
-            if (isAdmin && currentView === 'all') {
-                // 管理员-全部视图：汇总所有客服数据
-                Object.entries(allData.users).forEach(([username, userData]) => {
-                    if (username !== '__ADMIN__' && userData.stores) {
-                        totalStaff++;
-                        userData.stores.forEach(s => {
-                            stores.push({ ...s, staffName: username });
-                            if (!records[s.id]) records[s.id] = userData.records?.[s.id] || {};
-                            Object.values(userData.records?.[s.id] || {}).forEach(r => {
-                                totalProfit += r.profit || 0;
-                                totalRevenue += r.revenue || 0;
-                                totalCost += r.cost || 0;
-                                totalOrders += r.orders || 0;
-                            });
-                        });
-                    }
-                });
-            } else if (isAdmin && currentView === 'self') {
-                // 管理员-个人视图：显示客服选择器
-                renderStaffSelector();
-                return;
-            } else {
-                // 普通用户
-                const userData = allData.users[currentUser];
-                stores = userData?.stores || [];
-                records = userData?.records || {};
-                stores.forEach(s => {
-                    Object.values(records[s.id] || {}).forEach(r => {
-                        totalProfit += r.profit || 0;
-                        totalRevenue += r.revenue || 0;
-                        totalCost += r.cost || 0;
-                        totalOrders += r.orders || 0;
-                    });
-                });
-            }
+            let totalProfit = 0, totalRevenue = 0, totalCost = 0, totalOrders = 0;
+            
+            orders.forEach(o => {
+                totalProfit += o.profit || 0;
+                totalRevenue += o.revenue || 0;
+                totalCost += o.cost || 0;
+                totalOrders += o.orders || 0;
+            });
 
             document.getElementById('statTotalProfit').textContent = '¥' + f(totalProfit);
             document.getElementById('statTotalRevenue').textContent = '¥' + f(totalRevenue);
@@ -707,143 +644,41 @@
             document.getElementById('statProfitRate').textContent = totalRevenue ? ((totalProfit / totalRevenue) * 100).toFixed(1) + '%' : '0%';
         }
 
-        // 渲染概览
-        function renderOverview() {
-            const isAdmin = currentUser === '__ADMIN__';
-            
-            // 移除客服选择器（如果不是管理员个人视图）
-            if (!isAdmin || currentView === 'all') {
-                const selector = document.getElementById('staffSelector');
-                if (selector) selector.remove();
-            }
-
-            let stores = [];
-            let records = {};
-
-            if (isAdmin && currentView === 'all') {
-                // 管理员-全部视图：收集所有客服数据
-                Object.entries(allData.users).forEach(([username, userData]) => {
-                    if (username !== '__ADMIN__' && userData.stores) {
-                        userData.stores.forEach(s => {
-                            stores.push({ ...s, staffName: username });
-                            if (!records[s.id]) records[s.id] = userData.records?.[s.id] || {};
-                        });
-                    }
-                });
-            } else {
-                // 普通用户或管理员查看单个客服
-                const userData = allData.users[currentUser];
-                stores = userData?.stores || [];
-                records = userData?.records || {};
-            }
-
-            // 图表
-            renderCharts(stores, records);
-
-            // TOP5
-            const top5 = [...stores].map(s => {
-                const profit = Object.values(records[s.id] || {}).reduce((sum, r) => sum + (r.profit || 0), 0);
-                return { ...s, profit };
-            }).sort((a, b) => b.profit - a.profit).slice(0, 5);
-
-            document.getElementById('top5List').innerHTML = top5.length ? top5.map((s, i) => `
-                <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition">
-                    <span class="w-6 h-6 rounded-full ${i === 0 ? 'bg-yellow-500' : i === 1 ? 'bg-gray-400' : i === 2 ? 'bg-amber-600' : 'bg-white/20'} flex items-center justify-center text-xs font-bold">${i + 1}</span>
-                    <div class="flex-1 min-w-0">
-                        <div class="text-sm truncate">${s.name}</div>
-                        <div class="text-xs text-white/50 truncate">${s.productName}</div>
-                    </div>
-                    <span class="${s.profit >= 0 ? 'positive' : 'text-green-400'} text-sm font-medium">${s.profit >= 0 ? '+' : ''}¥${f(s.profit)}</span>
-                </div>
-            `).join('') : '<p class="text-white/40 text-sm text-center py-8">暂无数据</p>';
-
-            // 店铺卡片
-            document.getElementById('storeList').innerHTML = stores.length ? stores.map(s => {
-                const todayRec = records[s.id]?.[today] || {};
-                const todayProfit = (s.salePrice - s.costPrice) * (todayRec.orders || 0);
-                const totalProfit = Object.values(records[s.id] || {}).reduce((sum, r) => sum + (r.profit || 0), 0);
-                const unitProfit = s.salePrice - s.costPrice;
-                const isAdminAll = isAdmin && currentView === 'all';
-
-                return `
-                    <div class="glass rounded-2xl p-4 store-card transition duration-200 cursor-pointer group">
-                        <div class="flex items-start justify-between mb-3">
-                            <div>
-                                <h4 class="font-medium truncate">${s.name}</h4>
-                                <p class="text-xs text-white/50 truncate">${s.productName}</p>
-                                ${isAdminAll ? `<p class="text-xs text-yellow-400 mt-1">👤 ${s.staffName}</p>` : ''}
-                            </div>
-                            <div class="hidden group-hover:flex gap-1">
-                                <button onclick="event.stopPropagation(); editStore('${s.id}')" class="p-1.5 bg-white/10 hover:bg-white/20 rounded-lg text-xs transition">✏️</button>
-                                <button onclick="event.stopPropagation(); openDeleteStore('${s.id}')" class="p-1.5 bg-white/10 hover:bg-red-500/30 rounded-lg text-xs transition">🗑️</button>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2 text-sm mb-3">
-                            <div class="bg-white/5 rounded-lg p-2">
-                                <div class="text-xs text-white/40">卖价</div>
-                                <div class="font-medium">¥${s.salePrice}</div>
-                            </div>
-                            <div class="bg-white/5 rounded-lg p-2">
-                                <div class="text-xs text-white/40">成本</div>
-                                <div class="font-medium">¥${s.costPrice}</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between text-sm border-t border-white/10 pt-3">
-                            <div>
-                                <span class="text-white/40">今日</span>
-                                <span class="ml-1">${todayRec.orders || 0}单</span>
-                            </div>
-                            <span class="${todayProfit >= 0 ? 'positive' : 'text-green-400'} font-medium">${todayProfit >= 0 ? '+' : ''}¥${f(todayProfit)}</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm mt-2">
-                            <span class="text-white/40">累计利润</span>
-                            <span class="${totalProfit >= 0 ? 'positive' : 'text-green-400'} font-bold">${totalProfit >= 0 ? '+' : ''}¥${f(totalProfit)}</span>
-                        </div>
-                    </div>
-                `;
-            }).join('') : '<p class="col-span-full text-white/40 text-sm text-center py-12">暂无店铺，点击右上角添加</p>';
-        }
-
-        // 渲染图表
-        function renderCharts(stores, records) {
-            // 趋势图
+        function renderCharts() {
+            // 7天趋势图
             const days = [];
+            const profits = [];
             for (let i = 6; i >= 0; i--) {
                 const d = new Date();
                 d.setDate(d.getDate() - i);
-                days.push(d.toISOString().split('T')[0]);
+                const dateStr = d.toISOString().split('T')[0];
+                days.push(dateStr.slice(5));
+                const dayProfit = orders.filter(o => o.date === dateStr).reduce((sum, o) => sum + (o.profit || 0), 0);
+                profits.push(dayProfit);
             }
-            const dailyProfits = days.map(date => {
-                let profit = 0;
-                stores.forEach(s => profit += records[s.id]?.[date]?.profit || 0);
-                return profit;
-            });
 
             if (charts.trend) charts.trend.destroy();
             charts.trend = new Chart(document.getElementById('trendChart'), {
                 type: 'line',
                 data: {
-                    labels: days.map(d => d.substring(5)),
+                    labels: days,
                     datasets: [{
-                        data: dailyProfits,
+                        label: '利润',
+                        data: profits,
                         borderColor: '#ff4757',
-                        backgroundColor: 'rgba(255,71,87,0.15)',
+                        backgroundColor: 'rgba(255,71,87,0.1)',
                         fill: true,
-                        tension: 0.4,
-                        pointRadius: 5,
-                        pointBackgroundColor: '#ff4757',
-                        pointBorderColor: '#fff',
-                        pointBorderWidth: 2,
+                        tension: 0.4
                     }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(255,255,255,0.5)' } }, y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(255,255,255,0.5)', callback: v => '¥' + f(v) } } } }
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
             });
 
             // 饼图
             const storeProfits = stores.map(s => {
-                const profit = Object.values(records[s.id] || {}).reduce((sum, r) => sum + (r.profit || 0), 0);
+                const profit = orders.filter(o => o.store_id === s.id).reduce((sum, o) => sum + (o.profit || 0), 0);
                 return { name: s.name, profit };
-            }).filter(s => s.profit !== 0).sort((a, b) => b.profit - a.profit);
+            }).filter(s => s.profit !== 0).sort((a, b) => b.profit - a.profit).slice(0, 6);
 
             if (charts.pie) charts.pie.destroy();
             charts.pie = new Chart(document.getElementById('pieChart'), {
@@ -852,281 +687,345 @@
                     labels: storeProfits.map(s => s.name),
                     datasets: [{
                         data: storeProfits.map(s => s.profit),
-                        backgroundColor: ['#ff4757', '#ffa502', '#2ed573', '#1e90ff', '#ff6b81', '#a55eea', '#26de81', '#fd9644'],
-                        borderWidth: 0,
+                        backgroundColor: ['#ff4757', '#ffa502', '#2ed573', '#1e90ff', '#ff6b81', '#a55eea']
                     }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: 'rgba(255,255,255,0.7)', padding: 15, font: { size: 11 } } } } }
+                options: { responsive: true, maintainAspectRatio: false }
             });
         }
 
-        // 渲染店铺表格
-        function renderStoreTable() {
-            const userData = allData.users[currentUser];
-            const stores = userData?.stores || [];
-            const records = userData?.records || {};
+        function renderTop5() {
+            const top5 = stores.map(s => {
+                const profit = orders.filter(o => o.store_id === s.id).reduce((sum, o) => sum + (o.profit || 0), 0);
+                return { ...s, profit };
+            }).sort((a, b) => b.profit - a.profit).slice(0, 5);
 
-            const tbody = document.getElementById('storeTable');
-            tbody.innerHTML = stores.map((s, i) => {
-                const todayRec = records[s.id]?.[today] || {};
-                const orders = todayRec.orders || 0;
-                const unitProfit = s.salePrice - s.costPrice;
-                const todayProfit = unitProfit * orders;
-                const totalProfit = Object.values(records[s.id] || {}).reduce((sum, r) => sum + (r.profit || 0), 0);
+            document.getElementById('top5List').innerHTML = top5.length ? top5.map((s, i) => `
+                <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition">
+                    <span class="w-6 h-6 rounded-full ${i === 0 ? 'bg-yellow-500' : i === 1 ? 'bg-gray-400' : i === 2 ? 'bg-amber-600' : 'bg-white/20'} flex items-center justify-center text-xs font-bold">${i + 1}</span>
+                    <div class="flex-1 min-w-0">
+                        <div class="text-sm truncate">${s.name}</div>
+                        <div class="text-xs text-white/50 truncate">${s.product_name || ''}</div>
+                    </div>
+                    <span class="${s.profit >= 0 ? 'positive' : 'text-green-400'} text-sm font-medium">¥${f(s.profit)}</span>
+                </div>
+            `).join('') : '<p class="text-white/40 text-sm text-center py-8">暂无数据</p>';
+        }
+
+        function renderStoreCards() {
+            document.getElementById('storeList').innerHTML = stores.length ? stores.map(s => {
+                const todayOrders_ = orders.filter(o => o.store_id === s.id && o.date === today);
+                const todayCount = todayOrders_.reduce((sum, o) => sum + (o.orders || 0), 0);
+                const totalProfit = orders.filter(o => o.store_id === s.id).reduce((sum, o) => sum + (o.profit || 0), 0);
+                const unitProfit = (s.sale_price || 0) - (s.cost_price || 0);
 
                 return `
-                    <tr class="hover:bg-white/5 transition">
-                        <td class="px-4 py-3 text-white/40">${i + 1}</td>
-                        <td class="px-4 py-3 font-medium">${s.name}</td>
-                        <td class="px-4 py-3 text-white/60">${s.productName}</td>
-                        <td class="px-4 py-3 text-right">¥${s.salePrice.toFixed(2)}</td>
-                        <td class="px-4 py-3 text-right">¥${s.costPrice.toFixed(2)}</td>
-                        <td class="px-4 py-3 text-right ${unitProfit >= 0 ? 'positive' : 'text-green-400'}">${unitProfit >= 0 ? '+' : ''}¥${unitProfit.toFixed(2)}</td>
-                        <td class="px-4 py-3 text-right">
-                            <input type="number" min="0" value="${orders}" onchange="updateOrders('${s.id}', this.value)"
-                                   class="w-20 bg-white/10 border border-white/20 rounded-lg px-2 py-1 text-right text-sm focus:border-pink-400 transition">
-                        </td>
-                        <td class="px-4 py-3 text-right font-medium ${todayProfit >= 0 ? 'positive' : 'text-green-400'}">${todayProfit >= 0 ? '+' : ''}¥${f(todayProfit)}</td>
-                        <td class="px-4 py-3 text-right font-medium ${totalProfit >= 0 ? 'positive' : 'text-green-400'}">${totalProfit >= 0 ? '+' : ''}¥${f(totalProfit)}</td>
-                        <td class="px-4 py-3 text-center">
-                            <button onclick="editStore('${s.id}')" class="text-white/40 hover:text-blue-400 mr-2 transition">✏️</button>
-                            <button onclick="openDeleteStore('${s.id}')" class="text-white/40 hover:text-red-400 transition">🗑️</button>
-                        </td>
-                    </tr>
-                `;
-            }).join('') || '<tr><td colspan="10" class="px-4 py-12 text-center text-white/40">暂无店铺，点击上方添加</td></tr>';
-        }
-
-        // 更新订单
-        function updateOrders(storeId, val) {
-            const orders = parseInt(val) || 0;
-            const store = allData.users[currentUser].stores.find(s => s.id === storeId);
-            if (!store) return;
-
-            if (!allData.users[currentUser].records[storeId]) allData.users[currentUser].records[storeId] = {};
-            const rec = allData.users[currentUser].records[storeId][today] = allData.users[currentUser].records[storeId][today] || {};
-            rec.orders = orders;
-            rec.revenue = store.salePrice * orders;
-            rec.cost = store.costPrice * orders;
-            rec.profit = rec.revenue - rec.cost;
-
-            saveData();
-            render();
-        }
-
-        // 复制昨日
-        function copyYesterday() {
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
-            const yStr = yesterday.toISOString().split('T')[0];
-            const records = allData.users[currentUser].records || {};
-
-            allData.users[currentUser].stores.forEach(s => {
-                const yRec = records[s.id]?.[yStr];
-                if (yRec && yRec.orders > 0 && !records[s.id]?.[today]?.orders) {
-                    updateOrders(s.id, yRec.orders);
-                }
-            });
-            alert('已复制昨日订单（如今日已有数据则跳过）');
-        }
-
-        // 批量录入
-        function batchInput() {
-            tempBatchData = {};
-            const stores = allData.users[currentUser].stores || [];
-            const records = allData.users[currentUser].records || {};
-
-            document.getElementById('batchInputs').innerHTML = stores.map(s => {
-                const todayRec = records[s.id]?.[today] || {};
-                return `
-                    <div class="flex items-center gap-3 bg-white/5 rounded-xl p-3">
-                        <div class="flex-1 min-w-0">
-                            <div class="text-sm truncate">${s.name}</div>
-                            <div class="text-xs text-white/40">${s.productName}</div>
+                    <div class="glass rounded-2xl p-4 store-card transition duration-200 cursor-pointer group" onclick="openOrderModal('${s.id}')">
+                        <div class="flex items-start justify-between mb-3">
+                            <div>
+                                <h4 class="font-medium truncate">${s.name}</h4>
+                                <p class="text-xs text-white/50 truncate">${s.product_name || ''}</p>
+                            </div>
+                            ${!isAdmin ? `
+                            <div class="hidden group-hover:flex gap-1">
+                                <button onclick="event.stopPropagation(); editStore('${s.id}')" class="p-1.5 bg-white/10 hover:bg-white/20 rounded-lg text-xs transition">✏️</button>
+                                <button onclick="event.stopPropagation(); openDeleteStore('${s.id}')" class="p-1.5 bg-white/10 hover:bg-red-500/30 rounded-lg text-xs transition">🗑️</button>
+                            </div>
+                            ` : ''}
                         </div>
-                        <input type="number" min="0" value="${todayRec.orders || ''}" placeholder="订单"
-                               onchange="tempBatchData['${s.id}'] = parseInt(this.value) || 0"
-                               class="w-24 bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-right text-sm focus:border-pink-400 transition">
+                        <div class="grid grid-cols-2 gap-2 text-sm mb-3">
+                            <div class="bg-white/5 rounded-lg p-2">
+                                <div class="text-xs text-white/40">卖价</div>
+                                <div class="font-medium">¥${s.sale_price || 0}</div>
+                            </div>
+                            <div class="bg-white/5 rounded-lg p-2">
+                                <div class="text-xs text-white/40">成本</div>
+                                <div class="font-medium">¥${s.cost_price || 0}</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-sm border-t border-white/10 pt-3">
+                            <div>
+                                <span class="text-white/40">今日</span>
+                                <span class="ml-1">${todayCount}单</span>
+                            </div>
+                            <span class="${unitProfit >= 0 ? 'positive' : 'text-green-400'} font-medium">¥${f(unitProfit)}/单</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm mt-2">
+                            <span class="text-white/40">累计利润</span>
+                            <span class="${totalProfit >= 0 ? 'positive' : 'text-green-400'} font-bold">¥${f(totalProfit)}</span>
+                        </div>
                     </div>
                 `;
-            }).join('') || '<p class="text-white/40 text-center py-4">暂无店铺</p>';
-
-            document.getElementById('batchModal').classList.add('active');
+            }).join('') : '<p class="col-span-full text-white/40 text-sm text-center py-12">暂无店铺，点击右上角添加</p>';
         }
 
-        function applyBatch() {
-            Object.entries(tempBatchData).forEach(([id, orders]) => updateOrders(id, orders));
-            closeBatchModal();
+        function renderStoreTable() {
+            if (!stores.length) {
+                document.getElementById('storeTable').innerHTML = '<p class="text-white/40 text-center py-8">暂无店铺</p>';
+                return;
+            }
+
+            document.getElementById('storeTable').innerHTML = `
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="text-white/60 border-b border-white/10">
+                            <th class="text-left py-3 px-2">店铺</th>
+                            <th class="text-left py-3 px-2">商品</th>
+                            <th class="text-right py-3 px-2">卖价</th>
+                            <th class="text-right py-3 px-2">成本</th>
+                            <th class="text-right py-3 px-2">利润/单</th>
+                            <th class="text-right py-3 px-2">总利润</th>
+                            ${!isAdmin ? '<th class="text-right py-3 px-2">操作</th>' : ''}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${stores.map(s => {
+                            const totalProfit = orders.filter(o => o.store_id === s.id).reduce((sum, o) => sum + (o.profit || 0), 0);
+                            const unitProfit = (s.sale_price || 0) - (s.cost_price || 0);
+                            return `
+                                <tr class="border-b border-white/5 hover:bg-white/5">
+                                    <td class="py-3 px-2 font-medium">${s.name}</td>
+                                    <td class="py-3 px-2 text-white/60">${s.product_name || '-'}</td>
+                                    <td class="py-3 px-2 text-right">¥${s.sale_price || 0}</td>
+                                    <td class="py-3 px-2 text-right">¥${s.cost_price || 0}</td>
+                                    <td class="py-3 px-2 text-right ${unitProfit >= 0 ? 'positive' : 'text-green-400'}">¥${f(unitProfit)}</td>
+                                    <td class="py-3 px-2 text-right font-bold ${totalProfit >= 0 ? 'positive' : 'text-green-400'}">¥${f(totalProfit)}</td>
+                                    ${!isAdmin ? `
+                                    <td class="py-3 px-2 text-right">
+                                        <button onclick="openOrderModal('${s.id}')" class="text-pink-400 hover:text-pink-300 mr-2">录订单</button>
+                                        <button onclick="editStore('${s.id}')" class="text-blue-400 hover:text-blue-300 mr-2">编辑</button>
+                                        <button onclick="openDeleteStore('${s.id}')" class="text-red-400 hover:text-red-300">删除</button>
+                                    </td>
+                                    ` : ''}
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            `;
         }
 
-        function clearToday() {
-            allData.users[currentUser].stores.forEach(s => updateOrders(s.id, 0));
+        function renderMonthSelect() {
+            const months = new Set();
+            orders.forEach(o => months.add(o.date.slice(0, 7)));
+            const sorted = [...months].sort().reverse();
+            
+            document.getElementById('monthSelect').innerHTML = sorted.length 
+                ? sorted.map(m => `<option value="${m}">${m}</option>`).join('')
+                : `<option value="${today.slice(0,7)}">${today.slice(0,7)}</option>`;
         }
 
-        // 历史记录
-        function renderHistoryTable() {
-            const month = document.getElementById('historyMonth').value;
-            const search = document.getElementById('historySearch').value.toLowerCase();
-            const stores = allData.users[currentUser]?.stores || [];
-            const records = allData.users[currentUser]?.records || {};
+        function loadRecords() {
+            const month = document.getElementById('monthSelect').value;
+            const monthOrders = orders.filter(o => o.date.startsWith(month)).sort((a, b) => b.date.localeCompare(a.date));
 
-            const rows = [];
-            stores.forEach(s => {
-                if (search && !s.name.toLowerCase().includes(search) && !s.productName.toLowerCase().includes(search)) return;
-                Object.entries(records[s.id] || {}).forEach(([date, rec]) => {
-                    if (date.startsWith(month) && rec.orders > 0) {
-                        rows.push({ date, store: s.name, product: s.productName, salePrice: s.salePrice, costPrice: s.costPrice, ...rec });
-                    }
-                });
+            document.getElementById('recordList').innerHTML = monthOrders.length ? monthOrders.map(o => {
+                const store = stores.find(s => s.id === o.store_id);
+                return `
+                    <div class="glass rounded-xl p-4 flex items-center justify-between">
+                        <div>
+                            <div class="font-medium">${store?.name || '未知店铺'}</div>
+                            <div class="text-xs text-white/50">${o.date} · ${o.orders}单</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="${o.profit >= 0 ? 'positive' : 'text-green-400'} font-bold">¥${f(o.profit)}</div>
+                            <div class="text-xs text-white/50">营收¥${f(o.revenue)} 成本¥${f(o.cost)}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('') : '<p class="text-white/40 text-center py-8">本月暂无订单记录</p>';
+        }
+
+        // ========== Tab切换 ==========
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.toggle('tab-active', btn.dataset.tab === tab);
+                btn.classList.toggle('text-white/60', btn.dataset.tab !== tab);
             });
-            rows.sort((a, b) => b.date.localeCompare(a.date));
-
-            document.getElementById('historyTable').innerHTML = rows.map(r => `
-                <tr class="hover:bg-white/5">
-                    <td class="px-4 py-3 text-xs text-white/50">${r.date}</td>
-                    <td class="px-4 py-3">${r.store}</td>
-                    <td class="px-4 py-3 text-white/60">${r.product}</td>
-                    <td class="px-4 py-3 text-right">¥${r.salePrice.toFixed(2)}</td>
-                    <td class="px-4 py-3 text-right">¥${r.costPrice.toFixed(2)}</td>
-                    <td class="px-4 py-3 text-right">${r.orders}</td>
-                    <td class="px-4 py-3 text-right font-medium ${r.profit >= 0 ? 'positive' : 'text-green-400'}">${r.profit >= 0 ? '+' : ''}¥${f(r.profit)}</td>
-                </tr>
-            `).join('') || '<tr><td colspan="7" class="px-4 py-12 text-center text-white/40">暂无记录</td></tr>';
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`tab-${tab}`).classList.remove('hidden');
         }
 
-        // 模态框操作
-        function openStoreModal() {
-            document.getElementById('storeModalTitle').textContent = '添加店铺';
-            document.getElementById('editStoreId').value = '';
+        // ========== 店铺操作 ==========
+        function openAddStore() {
             document.getElementById('storeName').value = '';
             document.getElementById('productName').value = '';
             document.getElementById('salePrice').value = '';
             document.getElementById('costPrice').value = '';
-            document.getElementById('todayOrdersInput').value = '1';
-            updateCalc();
-            document.getElementById('storeModal').classList.add('active');
-            document.getElementById('storeName').focus();
+            document.getElementById('todayOrders').value = '1';
+            openModal('addStoreModal');
+        }
+
+        async function saveStore() {
+            const name = document.getElementById('storeName').value.trim();
+            const productName = document.getElementById('productName').value.trim();
+            const salePrice = parseFloat(document.getElementById('salePrice').value) || 0;
+            const costPrice = parseFloat(document.getElementById('costPrice').value) || 0;
+            const todayOrdersCount = parseInt(document.getElementById('todayOrders').value) || 0;
+
+            if (!name) return showToast('请填写店铺名称');
+
+            try {
+                const newStore = await supabaseRequest('stores', {
+                    method: 'POST',
+                    body: { user_id: currentUserId, name, product_name: productName, sale_price: salePrice, cost_price: costPrice }
+                });
+
+                // 如果有今日订单，一并录入
+                if (todayOrdersCount > 0) {
+                    const profit = (salePrice - costPrice) * todayOrdersCount;
+                    await supabaseRequest('orders', {
+                        method: 'POST',
+                        body: {
+                            store_id: newStore[0].id,
+                            date: today,
+                            orders: todayOrdersCount,
+                            revenue: salePrice * todayOrdersCount,
+                            cost: costPrice * todayOrdersCount,
+                            profit: profit
+                        }
+                    });
+                }
+
+                closeModal('addStoreModal');
+                showToast('店铺添加成功！');
+                loadData();
+            } catch (e) {
+                showToast('添加失败');
+                console.error(e);
+            }
         }
 
         function editStore(id) {
-            const store = allData.users[currentUser].stores.find(s => s.id === id);
+            const store = stores.find(s => s.id === id);
             if (!store) return;
-            const todayRec = allData.users[currentUser].records?.[id]?.[today];
 
-            document.getElementById('storeModalTitle').textContent = '编辑店铺';
             document.getElementById('editStoreId').value = id;
-            document.getElementById('storeName').value = store.name;
-            document.getElementById('productName').value = store.productName;
-            document.getElementById('salePrice').value = store.salePrice;
-            document.getElementById('costPrice').value = store.costPrice;
-            document.getElementById('todayOrdersInput').value = todayRec?.orders || '';
-            updateCalc();
-            document.getElementById('storeModal').classList.add('active');
+            document.getElementById('editStoreName').value = store.name;
+            document.getElementById('editProductName').value = store.product_name || '';
+            document.getElementById('editSalePrice').value = store.sale_price || 0;
+            document.getElementById('editCostPrice').value = store.cost_price || 0;
+            openModal('editStoreModal');
         }
 
-        function closeStoreModal() {
-            document.getElementById('storeModal').classList.remove('active');
-        }
+        async function updateStore() {
+            const id = document.getElementById('editStoreId').value;
+            const name = document.getElementById('editStoreName').value.trim();
+            const productName = document.getElementById('editProductName').value.trim();
+            const salePrice = parseFloat(document.getElementById('editSalePrice').value) || 0;
+            const costPrice = parseFloat(document.getElementById('editCostPrice').value) || 0;
 
-        function updateCalc() {
-            const p = parseFloat(document.getElementById('salePrice').value) || 0;
-            const c = parseFloat(document.getElementById('costPrice').value) || 0;
-            const orders = parseInt(document.getElementById('todayOrdersInput').value) || 0;
-            const profit = p - c;
-            const rate = p ? ((profit / p) * 100).toFixed(1) + '%' : '0%';
-            const todayProfit = profit * orders;
+            if (!name) return showToast('请填写店铺名称');
 
-            document.getElementById('calcProfit').textContent = (profit >= 0 ? '+' : '') + '¥' + profit.toFixed(2);
-            document.getElementById('calcProfit').className = profit >= 0 ? 'font-medium positive' : 'font-medium text-green-400';
-            document.getElementById('calcRate').textContent = rate;
-            document.getElementById('calcTodayProfit').textContent = (todayProfit >= 0 ? '+' : '') + '¥' + todayProfit.toFixed(2);
-            document.getElementById('calcTodayProfit').className = todayProfit >= 0 ? 'font-medium positive' : 'font-medium text-green-400';
-        }
+            try {
+                await supabaseRequest('stores', {
+                    method: 'PATCH',
+                    params: { id: `eq.${id}` },
+                    body: { name, product_name: productName, sale_price: salePrice, cost_price: costPrice }
+                });
 
-        document.getElementById('salePrice')?.addEventListener('input', updateCalc);
-        document.getElementById('costPrice')?.addEventListener('input', updateCalc);
-        document.getElementById('todayOrdersInput')?.addEventListener('input', updateCalc);
-
-        function saveStore() {
-            const name = document.getElementById('storeName').value.trim();
-            const productName = document.getElementById('productName').value.trim();
-            const salePrice = parseFloat(document.getElementById('salePrice').value);
-            const costPrice = parseFloat(document.getElementById('costPrice').value);
-            const todayOrders = parseInt(document.getElementById('todayOrdersInput').value) || 0;
-            const editId = document.getElementById('editStoreId').value;
-
-            if (!name) { alert('请输入店铺名称'); return; }
-            if (!productName) { alert('请输入商品简称'); return; }
-            if (isNaN(salePrice) || salePrice < 0) { alert('请输入有效的卖价'); return; }
-            if (isNaN(costPrice) || costPrice < 0) { alert('请输入有效的成本'); return; }
-
-            if (editId) {
-                const store = allData.users[currentUser].stores.find(s => s.id === editId);
-                if (store) {
-                    store.name = name;
-                    store.productName = productName;
-                    store.salePrice = salePrice;
-                    store.costPrice = costPrice;
-                    if (todayOrders > 0) {
-                        if (!allData.users[currentUser].records[store.id]) allData.users[currentUser].records[store.id] = {};
-                        allData.users[currentUser].records[store.id][today] = {
-                            orders: todayOrders,
-                            revenue: salePrice * todayOrders,
-                            cost: costPrice * todayOrders,
-                            profit: (salePrice - costPrice) * todayOrders
-                        };
-                    }
-                }
-            } else {
-                const storeId = Date.now().toString();
-                allData.users[currentUser].stores.push({ id: storeId, name, productName, salePrice, costPrice });
-                if (todayOrders > 0) {
-                    if (!allData.users[currentUser].records[storeId]) allData.users[currentUser].records[storeId] = {};
-                    allData.users[currentUser].records[storeId][today] = {
-                        orders: todayOrders,
-                        revenue: salePrice * todayOrders,
-                        cost: costPrice * todayOrders,
-                        profit: (salePrice - costPrice) * todayOrders
-                    };
-                }
+                closeModal('editStoreModal');
+                showToast('修改成功！');
+                loadData();
+            } catch (e) {
+                showToast('修改失败');
+                console.error(e);
             }
-
-            saveData();
-            closeStoreModal();
-            render();
         }
 
         function openDeleteStore(id) {
-            const store = allData.users[currentUser].stores.find(s => s.id === id);
             deleteTarget = { type: 'store', id };
-            document.getElementById('deleteMsg').textContent = `确定要删除店铺"${store?.name}"吗？历史数据将一并删除。`;
-            document.getElementById('deleteModal').classList.add('active');
+            openModal('deleteModal');
         }
 
-        function closeDeleteModal() {
-            document.getElementById('deleteModal').classList.remove('active');
+        async function confirmDelete() {
+            if (!deleteTarget.id) return;
+
+            try {
+                if (deleteTarget.type === 'store') {
+                    await supabaseRequest('stores', { method: 'DELETE', params: { id: `eq.${deleteTarget.id}` } });
+                    showToast('删除成功');
+                }
+                closeModal('deleteModal');
+                loadData();
+            } catch (e) {
+                showToast('删除失败');
+                console.error(e);
+            }
             deleteTarget = { type: null, id: null };
         }
 
-        function confirmDelete() {
-            if (deleteTarget.type === 'store') {
-                allData.users[currentUser].stores = allData.users[currentUser].stores.filter(s => s.id !== deleteTarget.id);
-                delete allData.users[currentUser].records[deleteTarget.id];
+        // ========== 订单操作 ==========
+        function openOrderModal(storeId) {
+            document.getElementById('orderStoreId').value = storeId;
+            document.getElementById('orderDate').value = today;
+            document.getElementById('orderCount').value = '1';
+            openModal('orderModal');
+        }
+
+        async function saveOrder() {
+            const storeId = document.getElementById('orderStoreId').value;
+            const date = document.getElementById('orderDate').value;
+            const orderCount = parseInt(document.getElementById('orderCount').value) || 0;
+
+            const store = stores.find(s => s.id === storeId);
+            if (!store) return showToast('店铺不存在');
+
+            const revenue = (store.sale_price || 0) * orderCount;
+            const cost = (store.cost_price || 0) * orderCount;
+            const profit = revenue - cost;
+
+            try {
+                // 检查是否已有当日订单
+                const existing = await supabaseRequest('orders', {
+                    params: { store_id: `eq.${storeId}`, date: `eq.${date}`, select: 'id' }
+                });
+
+                if (existing.length > 0) {
+                    // 更新
+                    await supabaseRequest('orders', {
+                        method: 'PATCH',
+                        params: { id: `eq.${existing[0].id}` },
+                        body: { orders: orderCount, revenue, cost, profit }
+                    });
+                } else {
+                    // 新增
+                    await supabaseRequest('orders', {
+                        method: 'POST',
+                        body: { store_id: storeId, date, orders: orderCount, revenue, cost, profit }
+                    });
+                }
+
+                closeModal('orderModal');
+                showToast('订单已保存！');
+                loadData();
+            } catch (e) {
+                showToast('保存失败');
+                console.error(e);
             }
-            saveData();
-            closeDeleteModal();
-            render();
         }
 
-        function closeBatchModal() {
-            document.getElementById('batchModal').classList.remove('active');
+        // ========== 初始化 ==========
+        function init() {
+            // 检查登录状态
+            const savedUser = localStorage.getItem('pdd_user');
+            const savedUserId = localStorage.getItem('pdd_user_id');
+            const isAdminSaved = localStorage.getItem('pdd_admin') === 'true';
+
+            if (savedUser && savedUserId) {
+                currentUser = savedUser;
+                currentUserId = savedUserId;
+                isAdmin = false;
+                showMainPage();
+            } else if (isAdminSaved) {
+                currentUser = '管理员';
+                isAdmin = true;
+                showMainPage();
+            } else {
+                showLogin();
+            }
         }
 
-        // 工具函数
-        function f(num) { return Math.abs(num).toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
-        function fmtNum(n) { return n.toLocaleString('zh-CN'); }
-
-        // 启动
         init();
     </script>
 </body>
